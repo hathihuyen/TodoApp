@@ -20,4 +20,17 @@ $("span").click(function(event){
 	});
 	//stop using the parent layout events
 	event.stopPropagation();
-})
+});
+
+//Add new Todo
+$("input[type='text']").keypress(function(event){
+	if(event.which === 13){
+		var newTodo = $(this).val();
+		if (newTodo === "") {
+			$("#message").val("There is no task to add!");
+		} else {
+			//create a new li and add to ul
+			$("ul").append("<li><span>X</span> " + newTodo + "</li>");
+		}		
+	}
+});
