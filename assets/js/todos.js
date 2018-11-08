@@ -1,20 +1,10 @@
 //Check off Specific Todos By Clicking
-$("li").click(function(){
-	if ($(this).css("color") == "rgb(128, 128, 128)"){ //if the text is gray
-		$(this).css({
-			color: "black",
-			textDecoration: "none"
-		});
-	} else {
-		$(this).css({
-			color: "gray",
-			textDecoration: "line-through"
-		});
-	}	
+$("ul").on("click", "li", function(){//effect with all "li" inside of "ul" event with the future one
+	$(this).toggleClass("completed");
 });
 
 //CLick on X to delete Todo
-$("span").click(function(event){
+$("ul").on("click", "span", function(event){ //effect with all "span" tag inside of "ul".
 	$(this).parent().fadeOut(function(){
 		$(this).remove(); //this $(this) equal to $(this).parent().
 	});
@@ -27,10 +17,12 @@ $("input[type='text']").keypress(function(event){
 	if(event.which === 13){
 		var newTodo = $(this).val();
 		if (newTodo === "") {
-			$("#message").val("There is no task to add!");
+			$("#message").html("There is no task to add!");
+			$("#message").addClass("message");
 		} else {
 			//create a new li and add to ul
 			$("ul").append("<li><span>X</span> " + newTodo + "</li>");
+			$(this).val(""); //clear the textbox
 		}		
 	}
 });
